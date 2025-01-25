@@ -1,8 +1,8 @@
-import { Button } from "@/components/ui/button";
 import logo from "../../public/Logo.png";
 import { IoIosMenu } from "react-icons/io";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { Button } from "./ui/button";
 const Navbar = () => {
   const [ isMenuOpen, setIsMenuOpen ] = useState(false);
   return (
@@ -21,9 +21,9 @@ const Navbar = () => {
         <a href="#">Cars</a>
         <a href="#">About Us</a>
       </div>
-      <div className="hidden md:block">
+      <Link to={'/login'} className="hidden md:block">
         <Button className="button-primary">Login</Button>
-      </div>
+      </Link>
       <div
         onClick={() => setIsMenuOpen(!isMenuOpen)}
         className="md:hidden cursor-pointer text-2xl"
@@ -39,7 +39,8 @@ const Navbar = () => {
         <a href="#">Home</a>
         <a href="#">Cars</a>
         <a href="#">About Us</a>
-        <Button>Login</Button>
+        <Link to={'/login'}>
+        <Button>Login</Button></Link>
       </div>
     </div>
   );
