@@ -1,9 +1,11 @@
-import { Button } from "./components/ui/button";
+import Banner from "./components/Banner";
+import Navbar from "./components/Navbar";
 
 const App = () => {
   return (
-    <div>
-       <Button>Click me</Button>
+    <div className="mx-auto max-w-screen-xl">
+       <Navbar/>
+       <Banner/>
     </div>
   );
 };
