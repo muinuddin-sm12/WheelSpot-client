@@ -2,18 +2,19 @@ import { Button } from "@/components/ui/button";
 import logo from "../../public/Logo.png";
 import { IoIosMenu } from "react-icons/io";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 const Navbar = () => {
   const [ isMenuOpen, setIsMenuOpen ] = useState(false);
   return (
     <div className="flex justify-between items-center px-20 py-6">
       <div>
-        <a href="#" className="">
+        <Link to={'/'} className="">
           <img
             className="h-14 hover:scale-105 transition-all"
             src={logo}
             alt=""
           />
-        </a>
+        </Link>
       </div>
       <div className="hidden md:flex items-center gap-6">
         <a href="#">Home</a>
