@@ -29,7 +29,6 @@ const WSForm = ({ onSubmit, children, defaultValues, resolver }: TFromProps) => 
     <FormProvider {...methods}>
       <Form
         layout="vertical"
-        className="w-[300px] py-10 bg-sky-200 rounded-md px-4"
         onFinish={methods.handleSubmit(onSubmit)}
       >
         {children}

@@ -15,7 +15,7 @@ const WSInput = ({ type, name, label }: TInputProps) => {
           <Form.Item label={label}>
             <Input
               {...field}
-              className="bg-transparent border text-sm py-1 border-gray-200 rounded-md w-[150px] ml-3 outline-none px-2"
+              className="bg-transparent border w-[250px] text-sm border-gray-200 rounded-md outline-none"
               type={type}
               id={name}
             />

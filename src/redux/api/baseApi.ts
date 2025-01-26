@@ -18,7 +18,7 @@ const baseQuery = fetchBaseQuery({
 const baseQueryWithRefreshToken: BaseQueryFn<FetchArgs, BaseQueryApi, DefinitionType> = async (args, api, extraOptions): Promise<any> => {
   let result = await baseQuery(args, api, extraOptions);
   if(result?.error?.status === 404){
-    toast.error(result.error.data.message, {duration: 2000})
+    toast.error(result?.error?.data?.message, {duration: 2000})
   }
   if(result?.error?.status === 401){
     // console.log('Sending refresh token.')
