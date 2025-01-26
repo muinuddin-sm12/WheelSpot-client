@@ -7,15 +7,15 @@ import { Link } from "react-router-dom";
 const ProductCard = (data: TCar) => {
   const { _id, brand, category, model, price, year } = data.data;
   return (
-    <div className="flex flex-col p-4 border max-w-[400px] md:w-[350px] ">
-      <div className="h-[250px] overflow-hidden">
+    <div className="flex flex-col shadow-lg rounded-lg overflow-hidden max-w-[400px]">
+      <div className=" overflow-hidden">
         <img src={car} className="object-cover " alt="" />
       </div>
-      <div>
+      <div className="p-3">
         <div className="flex justify-between items-center">
-          <h2 className="text-lg font-medium py-3">{`${brand} ${model}`}</h2>
+          <h2 className="text-lg font-medium pb-3">{`${brand} ${model}`}</h2>
           <div>
-            <span className="text-lg font-semibold text-[#D32F2F]">
+            <span className="font-semibold text-[#D32F2F]">
               Price: {price}$
             </span>
           </div>
@@ -43,9 +43,9 @@ const ProductCard = (data: TCar) => {
           </div>
         </div>
       </div>
-      <Button className="button-primary w-[40%] mt-3 mx-auto">
+      <p className="text-[#D32F2F] font-medium text-sm text-center pb-3 underline w-[40%] mx-auto">
         <Link to={`/${_id}`}>View Details</Link>
-      </Button>
+      </p>
     </div>
   );
 };
