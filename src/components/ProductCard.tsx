@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const ProductCard = (data: TCar) => {
   const { _id, brand, category, model, price, year } = data.data;
   return (
-    <div className="flex flex-col shadow-lg rounded-lg overflow-hidden border max-w-[400px]">
+    <div className="flex flex-col shadow-sm rounded-lg overflow-hidden border max-w-[400px]">
       <div className=" overflow-hidden">
         <img src={car} className="object-cover " alt="" />
       </div>

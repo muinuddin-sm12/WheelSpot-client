@@ -8,7 +8,7 @@ import { logout, selectCurrentUser } from "@/redux/features/auth/authSlice";
 const Navbar = () => {
   const dispatch = useAppDispatch();
   const userData = useAppSelector(selectCurrentUser);
-  console.log(userData);
+  // console.log(userData);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
     <div className=" px-6 md:px-12 lg:px-20">
@@ -35,7 +35,7 @@ const Navbar = () => {
         </div>
         {userData ? (
           <div className="hidden md:flex items-center gap-2">
-            <div className="h-10 w-10 rounded-full bg-black text-red-500 flex items-center justify-center text-xl font">
+            <div className="h-10 w-10 rounded-full bg-black text-red-500 flex items-center justify-center text-xl">
               {userData?.email?.split("")[0].toUpperCase()}
             </div>
             <Button

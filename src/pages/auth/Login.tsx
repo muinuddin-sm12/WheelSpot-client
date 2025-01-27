@@ -18,7 +18,7 @@ const Login = () => {
   const [login] = useLoginMutation(undefined);
   const onSubmit = async (data: FieldValues) => {
     const toastId = toast.loading("Logging in", { duration: 2000 });
-    console.log(data);
+    // console.log(data);
     try {
       const registerData = {
         email: data.email,

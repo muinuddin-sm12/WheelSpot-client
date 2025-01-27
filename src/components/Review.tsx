@@ -19,7 +19,6 @@ const Review = () => {
           <Link
             to={"/"}
             className="uppercase flex items-center text-[#D32F2F] text-sm font-medium "
-            to={"/"}
           >
             write a review <MdKeyboardArrowRight className="text-xl"/>
           </Link>
@@ -31,14 +30,14 @@ const Review = () => {
         }}
         className=""
       >
-        <CarouselContent>
+        <CarouselContent className="flex gap-2">
           {Array.from({ length: 5 }).map((_, index) => (
             <CarouselItem
               key={index}
               className="basis-full md:basis-1/2 lg:basis-1/3"
             >
-              <div className="p-1">
-                <div className="border shadow-lg rounded-lg">
+              <div className="pb-3">
+                <div className="border shadow-sm rounded-lg">
                   <CardContent className="px-6 py-4">
                     <div>
                       <div>
