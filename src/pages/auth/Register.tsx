@@ -5,11 +5,12 @@ import { useRegisterMutation } from "@/redux/features/auth/authApi";
 import { Button } from "antd";
 import logo from "../../assets/Logo.png";
 import { FieldValues } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import {zodResolver} from "@hookform/resolvers/zod"
 import { registrationSchema } from "@/schemas/authSchema";
 const Register = () => {
+  const navigate = useNavigate()
   const [register] = useRegisterMutation(undefined);
   const onSubmit = async (data: FieldValues) => {
     console.log(data);
@@ -25,6 +26,7 @@ const Register = () => {
         id: toastId,
         duration: 2000,
       });
+      navigate('/login')
     } catch (error) {
       toast.error("Something went wrong", { id: toastId, duration: 2000 });
     }
@@ -38,8 +40,6 @@ const Register = () => {
           <WSInput type={"text"} name={"name"} label={"Name:"} />
           <WSInput type={"email"} name={"email"} label={"Email:"} />
           <WSInput type={"password"} name={"password"} label={"Password:"} />
-          <WSInput type={"file"} name={"image"} label={"Image:"} />
-
           <p className="text-sm mb-3 text-gray-400">
             Already registered?{" "}
             <Link

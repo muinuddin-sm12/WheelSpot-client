@@ -19,7 +19,7 @@ const FeatureProducts = () => {
         </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:grid-cols-4">
-        {data?.data?.map((singleData: TCar) => (
+        {data?.data?.slice(0, 8).map((singleData: TCar) => (
           <ProductCard key={singleData._id} data={singleData} />
         ))}
       </div>
