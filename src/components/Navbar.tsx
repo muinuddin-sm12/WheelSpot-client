@@ -13,10 +13,10 @@ const Navbar = () => {
   return (
     <div className=" px-6 md:px-12 lg:px-20">
       <div className="flex relative justify-between items-center border-b  py-2">
-        <div>
+        <div className="z-[999]">
           <Link to={"/"} className="">
             <img
-              className="h-10 md:h-12 lg:h-14 hover:scale-105 transition-all"
+              className="h-10 md:h-12 hover:scale-105 transition-all"
               src={logo}
               alt=""
             />

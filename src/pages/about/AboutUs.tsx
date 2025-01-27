@@ -3,7 +3,7 @@ import img from '../../assets/about-sec.jpg'
 
 const AboutUs = () => {
   return (
-    <div className="px-6 md:px-12 lg:px-20 md:py-14 lg:py-16 py-10">
+    <div className="px-6 md:px-12 lg:px-20 md:py-8 lg:py-10 py-6">
         <div>
             <div className="flex items-center gap-3 mb-4">
                 <div className="h-12 w-12 rounded-full bg-[#D32F2F] text-white text-2xl flex items-center justify-center">
@@ -12,7 +12,7 @@ const AboutUs = () => {
                 <span className="text-xl ">About Us</span>
             </div>
             <p className="text-xl font-medium mb-2 leading-6">To become the leading, most fair and trustworthy luxury car dealership in the UAE</p>
-            <div className="h-[70vh] overflow-hidden w-full mb-3">
+            <div className="h-[50vh] md:h-[70vh] overflow-hidden w-full mb-3">
                 <img className="h-full object-cover w-full" src={img} alt="" />
             </div>
             <div className="flex flex-col gap-4">

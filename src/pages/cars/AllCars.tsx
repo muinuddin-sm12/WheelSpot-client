@@ -6,7 +6,7 @@ const AllCars = () => {
       return <p>Loading...</p>
     }
   return (
-    <div>hellow</div>
+    <div className="min-h-screen">hellow</div>
   )
 }
 
