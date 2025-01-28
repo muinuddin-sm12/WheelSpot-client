@@ -52,7 +52,6 @@ const AddProducts = () => {
         category: data.category,
         description: data.description,
         quantity: Number(data?.stock),
-        // inStock: true,
         image: imageUrl,
       };
       console.log(productData)
