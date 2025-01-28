@@ -2,8 +2,8 @@ import { Link, Outlet, useLocation } from "react-router-dom";
 
 const menuItems = [
   { path: "add-products", label: "Add Product" },
-  { path: "manage-user", label: "Manage User" },
   { path: "manage-products", label: "Manage Product" },
+  { path: "manage-user", label: "Manage User" },
   { path: "manage-orders", label: "Manage Order" },
 ];
 const AdminDashboard = () => {

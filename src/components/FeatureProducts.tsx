@@ -18,8 +18,8 @@ const FeatureProducts = () => {
           <Link className="uppercase flex items-center text-[#D32F2F] font-medium text-sm" to={"/"}>view all cars <MdKeyboardArrowRight className="text-xl"/></Link>
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:grid-cols-4">
-        {data?.data?.slice(0, 8).map((singleData: TCar) => (
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-6 lg:grid-cols-4">
+        {data?.data?.slice().reverse().slice(0, 8).map((singleData: TCar) => (
           <ProductCard key={singleData._id} data={singleData} />
         ))}
       </div>

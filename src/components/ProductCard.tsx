@@ -1,20 +1,21 @@
 import { TCar } from "@/types/global";
-import car from "../assets/2023 Nissan Altima Gets A Minor Price Hike To Accompany Its Facelift _ Carscoops.jpeg";
 import { Link } from "react-router-dom";
+import { IoLogoUsd } from "react-icons/io5";
+
 
 const ProductCard = (data: TCar) => {
-  const { _id, brand, category, model, price, year } = data.data;
+  const { _id, brand, category, model, price, year, image } = data.data;
   return (
     <div className="flex flex-col shadow-sm rounded-lg overflow-hidden border max-w-[400px]">
       <div className=" overflow-hidden">
-        <img src={car} className="object-cover " alt="" />
+        <img src={image} className="object-cover w-full h-[160px]" alt="" />
       </div>
       <div className="px-3 pt-2">
         <div className="flex justify-between items-center pb-3">
-          <h2 className="text-lg font-medium ">{`${brand} ${model}`}</h2>
+          <h2 className="font-medium ">{`${brand} ${model}`}</h2>
           <div>
-            <span className="font-semibold text-[#D32F2F]">
-              Price: {price}$
+            <span className="font-semibold text-sm flex items-center">
+              <span><IoLogoUsd/></span> {price}
             </span>
           </div>
         </div>

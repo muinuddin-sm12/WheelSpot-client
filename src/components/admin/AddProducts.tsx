@@ -9,34 +9,9 @@ import { addProductsSchema } from "@/schemas/addProductsSchema";
 import { uploadPhoto } from "@/utils/uploadPhoto";
 import { Form } from "antd";
 import { useAddProductsMutation } from "@/redux/features/cars/carApi";
+import { categoryOptions } from "@/constant/products";
 
-const categoryOptions = [
-  {
-    value: "Sedan",
-    label: "Sedan",
-    disable: false,
-  },
-  {
-    value: "SUV",
-    label: "SUV",
-    disable: false,
-  },
-  {
-    value: "Truck",
-    label: "Truck",
-    disable: false,
-  },
-  {
-    value: "Coupe",
-    label: "Coupe",
-    disable: false,
-  },
-  {
-    value: "Convertible",
-    label: "Convertible",
-    disable: false,
-  },
-];
+
 
 const AddProducts = () => {
   const [addProducts] = useAddProductsMutation(undefined);
@@ -67,7 +42,7 @@ const AddProducts = () => {
   return (
     <div className="w-full min-h-screen ">
       <div className="w-full rounded-md flex flex-col items-center">
-        <p className="text-xl font-medium mb-8">Add New Product Form</p>
+        <p className="text-xl font-medium mb-8">Add New Product</p>
         <WSForm onSubmit={onSubmit} resolver={zodResolver(addProductsSchema)}>
           <div className="flex items-center gap-4">
             <WSInput type={"text"} name={"brand"} label={"Brand:"} />

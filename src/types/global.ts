@@ -8,4 +8,5 @@ export type TCar = {
     description: string;
     quantity: number;
     inStock: boolean;
+    image: string;
 }

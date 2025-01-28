@@ -17,7 +17,7 @@ const WSSelect = ({ label, name, options }: TPHSelectProps) => {
       name={name}
       render={({ field, fieldState: { error } }) => (
         <Form.Item className="w-[120px]" label={label}>
-          <Select {...field} options={options} />
+          <Select className="bg-transparent outline-none"{...field} options={options} />
           {error && <small className="text-red-500">{error.message}</small>}
         </Form.Item>
       )}

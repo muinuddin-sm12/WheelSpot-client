@@ -1,4 +1,8 @@
-import { useGetAllCarsQuery } from "@/redux/features/cars/carApi";
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import {
+  useDeleteAProductMutation,
+  useGetAllCarsQuery,
+} from "@/redux/features/cars/carApi";
 import {
   Table,
   TableBody,
@@ -9,13 +13,22 @@ import {
 } from "../ui/table";
 import { MdDeleteForever } from "react-icons/md";
 import { MdOutlinePublishedWithChanges } from "react-icons/md";
-import { Button } from "../ui/button";
 import { useState } from "react";
+import { toast } from "sonner";
+import { TCar } from "@/types/global";
+import { UpdateProduct } from "../UpdateProduct";
 
 const ManageProducts = () => {
   const [dataLimit, setDataLimit] = useState(6);
   const [buttonVisible, setButtonVisible] = useState(false);
-  const { data, isLoading } = useGetAllCarsQuery(undefined);
+  const [selectedProductId, setSelectedProductId] = useState<string | null>(
+    null
+  );
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { data, isLoading, refetch } = useGetAllCarsQuery(undefined);
+
+  const [deleteAProduct] = useDeleteAProductMutation(undefined);
+
   if (isLoading) {
     return <p>Loading...</p>;
   }
@@ -28,11 +41,32 @@ const ManageProducts = () => {
     setButtonVisible(false);
   };
 
+  const handleOpenModal = (productId: string) => {
+    setSelectedProductId(productId); // Set the ID of the selected product
+    setIsModalOpen(true); // Open the modal
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false); // Close the modal
+    setSelectedProductId(null); // Reset the product ID
+  };
+
+  const handleDeleteProduct = async (productId: string) => {
+    try {
+      await deleteAProduct(productId);
+      toast.success("Product deleted successfully", {
+        duration: 2000,
+      });
+      refetch();
+    } catch (error) {
+      toast.error("Something went wrong!", { duration: 2000 });
+    }
+  };
+
   return (
     <div>
-      <div className="flex items-center justify-between py-3 rounded-lg bg-gray-300 px-4">
-        <p>All Product List</p>
-        <Button className="button-primary">Add new Product</Button>
+      <div className="py-3 rounded-lg bg-gray-200 px-3">
+        <p className="text-sm">All Product List</p>
       </div>
       <Table>
         <TableHeader>
@@ -51,7 +85,7 @@ const ManageProducts = () => {
             ?.slice()
             .reverse()
             .slice(0, dataLimit)
-            .map((singleData) => (
+            .map((singleData: TCar) => (
               <TableRow key={singleData._id}>
                 <TableCell className="font-medium">
                   <img
@@ -69,14 +103,28 @@ const ManageProducts = () => {
                   {singleData?.quantity}
                 </TableCell>
                 <TableCell className="text-right">
-                  <button>
+                  <button
+                    onClick={() => handleDeleteProduct(singleData?._id)}
+                    className="text-xl text-[#D32F2F]"
+                  >
                     <MdDeleteForever />
                   </button>
                 </TableCell>
                 <TableCell className="text-right">
-                  <button>
+                  <button
+                    onClick={() => handleOpenModal(singleData._id)} // Pass the product ID here
+                    className="text-lg"
+                  >
                     <MdOutlinePublishedWithChanges />
                   </button>
+
+                  {/* Conditionally render the UpdateProduct modal */}
+                  {isModalOpen && selectedProductId && (
+                    <UpdateProduct
+                      id={selectedProductId} // Pass the selected product's ID
+                      onClose={handleCloseModal} // Pass the close function to the modal
+                    />
+                  )}
                 </TableCell>
               </TableRow>
             ))}
