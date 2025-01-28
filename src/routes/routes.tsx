@@ -1,4 +1,5 @@
 import App from "@/App";
+import AddProducts from "@/components/admin/AddProducts";
 import ManageOrders from "@/components/admin/ManageOrders";
 import ManageProducts from "@/components/admin/ManageProducts";
 import ManageUser from "@/components/admin/ManageUser";
@@ -37,7 +38,11 @@ const router = createBrowserRouter([
         children: [
           {
             index: true,
-            element: <Navigate to="manage-user" replace />,
+            element: <Navigate to="add-products" replace />,
+          },
+          {
+            path: "add-products",
+            element: <AddProducts />,
           },
           {
             path: "manage-user",
@@ -51,6 +56,7 @@ const router = createBrowserRouter([
             path: "manage-products",
             element: <ManageProducts />,
           },
+          
         ],
       },
       {

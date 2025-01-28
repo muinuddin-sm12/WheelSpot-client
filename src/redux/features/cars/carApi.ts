@@ -13,7 +13,14 @@ export const carApi = baseApi.injectEndpoints({
                 url: `/cars/${id}`,
                 method: 'GET'
             })
+        }),
+        addProducts: builder.mutation({
+            query: (data) => ({
+                url: '/cars',
+                method: 'POST',
+                body: data,
+            })
         })
     })
 })
-export const {useGetAllCarsQuery, useGetSingleCarQuery} = carApi;
+export const {useGetAllCarsQuery, useGetSingleCarQuery, useAddProductsMutation} = carApi;

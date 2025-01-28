@@ -39,24 +39,6 @@ const ManageProducts = () => {
             <TableCell className="text-right"><button><MdDeleteForever/></button></TableCell>
             <TableCell className="text-right"><button><MdOutlinePublishedWithChanges/></button></TableCell>
           </TableRow>
-          <TableRow>
-            <TableCell className="font-medium"><img src={image} className="h-14 w-20 object-cover" alt="" /></TableCell>
-            <TableCell>BMW i8</TableCell>
-            <TableCell>2025</TableCell>
-            <TableCell className="text-right">$250.00</TableCell>
-            <TableCell className="text-right">4</TableCell>
-            <TableCell className="text-right"><button><MdDeleteForever/></button></TableCell>
-            <TableCell className="text-right"><button><MdOutlinePublishedWithChanges/></button></TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell className="font-medium"><img src={image} className="h-14 w-20 object-cover" alt="" /></TableCell>
-            <TableCell>BMW i8</TableCell>
-            <TableCell>2025</TableCell>
-            <TableCell className="text-right">$250.00</TableCell>
-            <TableCell className="text-right">4</TableCell>
-            <TableCell className="text-right"><button><MdDeleteForever/></button></TableCell>
-            <TableCell className="text-right"><button><MdOutlinePublishedWithChanges/></button></TableCell>
-          </TableRow>
         </TableBody>
       </Table>
     </div>
