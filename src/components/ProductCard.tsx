@@ -5,14 +5,19 @@ import { IoLogoUsd } from "react-icons/io5";
 
 const ProductCard = (data: TCar) => {
   const { _id, brand, category, model, price, year, image } = data.data;
+  const carTitle = brand.concat(model);
   return (
-    <div className="flex flex-col shadow-sm rounded-lg overflow-hidden border max-w-[400px]">
+    <div className="flex flex-col shadow-sm rounded-lg overflow-hidden border lg:max-w-[400px]">
       <div className=" overflow-hidden">
-        <img src={image} className="object-cover w-full h-[160px]" alt="" />
+        <img src={image} className="object-cover bg-center w-full h-[160px]" alt="" />
       </div>
       <div className="px-3 pt-2">
         <div className="flex justify-between items-center pb-3">
-          <h2 className="font-medium ">{`${brand} ${model}`}</h2>
+          <h2 className="font-medium ">
+            {
+              carTitle.length > 15 ? `${brand}` : `${brand} ${model}`
+            }
+          </h2>
           <div>
             <span className="font-semibold text-sm flex items-center">
               <span><IoLogoUsd/></span> {price}

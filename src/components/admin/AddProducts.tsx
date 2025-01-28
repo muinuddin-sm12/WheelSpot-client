@@ -8,12 +8,15 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { addProductsSchema } from "@/schemas/addProductsSchema";
 import { uploadPhoto } from "@/utils/uploadPhoto";
 import { Form } from "antd";
-import { useAddProductsMutation } from "@/redux/features/cars/carApi";
+import { useAddProductsMutation, useGetAllCarsQuery } from "@/redux/features/cars/carApi";
 import { categoryOptions } from "@/constant/products";
+import { useNavigate } from "react-router-dom";
 
 
 
 const AddProducts = () => {
+  const navigate = useNavigate();
+  const {refetch} = useGetAllCarsQuery(undefined);
   const [addProducts] = useAddProductsMutation(undefined);
   const onSubmit = async (data: FieldValues) => {
     const toastId = toast.loading("Adding product...", { duration: 2000 });
@@ -35,6 +38,8 @@ const AddProducts = () => {
         id: toastId,
         duration: 2000,
       });
+      navigate('/admin-dashboard/manage-products');
+      refetch();
     } catch (error) {
       toast.error("Something went wrong", { id: toastId, duration: 2000 });
     }

@@ -1,6 +1,5 @@
 import { useGetSingleCarQuery } from "@/redux/features/cars/carApi";
 import { Link, useParams } from "react-router-dom";
-import car from "../assets/ford-mustang-2024.jpeg";
 import { Button } from "./ui/button";
 
 const ProductDetails = () => {
@@ -9,12 +8,12 @@ const ProductDetails = () => {
   if (isLoading) {
     return <p>Loading..</p>;
   }
-  const { brand, model, category, year, description, price, inStock } =
+  const { brand, model, category, image,  year, description, price, inStock } =
     data.data;
   return (
     <div className="px-6 md:px-12 lg:px-20 w-full flex flex-col md:flex-row items-start gap-6 py-6 md:py-12 lg:py-16">
       <div className="h-[400px] overflow-hidden flex-1">
-        <img src={car} className="object-cover " alt="" />
+        <img src={image} className="object-cover bg-center h-full w-full" alt="" />
       </div>
       <div className="flex-1">
         <h2 className="text-xl font-medium text-gray-700 mb-4">Car Details</h2>
