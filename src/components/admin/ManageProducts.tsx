@@ -14,20 +14,22 @@ import {
 import { MdDeleteForever } from "react-icons/md";
 import { MdOutlinePublishedWithChanges } from "react-icons/md";
 import { useState } from "react";
-import { toast } from "sonner";
 import { TCar } from "@/types/global";
-import { UpdateProduct } from "../UpdateProduct";
+import { UpdateProduct } from "../modal/UpdateProduct";
+import { ProductDeleteModal } from "../modal/ProductDeleteModal";
 
 const ManageProducts = () => {
   const [dataLimit, setDataLimit] = useState(6);
   const [buttonVisible, setButtonVisible] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [selectedProductId, setSelectedProductId] = useState<string | null>(
     null
   );
+  const [selectedDeleteProductId, setSelectedDeleteProductId] = useState<
+    string | null
+  >(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { data, isLoading, refetch } = useGetAllCarsQuery(undefined);
-
-  const [deleteAProduct] = useDeleteAProductMutation(undefined);
+  const { data, isLoading } = useGetAllCarsQuery(undefined);
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -50,19 +52,15 @@ const ManageProducts = () => {
     setIsModalOpen(false); // Close the modal
     setSelectedProductId(null); // Reset the product ID
   };
-
-  const handleDeleteProduct = async (productId: string) => {
-    try {
-      await deleteAProduct(productId);
-      toast.success("Product deleted successfully", {
-        duration: 2000,
-      });
-      refetch();
-    } catch (error) {
-      toast.error("Something went wrong!", { duration: 2000 });
-    }
+  const handleDeleteOpenModal = (productId: string) => {
+    setSelectedDeleteProductId(productId); // Set the ID of the selected product
+    setIsDeleteModalOpen(true); // Open the modal
   };
 
+  const handleDeleteCloseModal = () => {
+    setIsDeleteModalOpen(false); // Close the modal
+    setSelectedDeleteProductId(null); // Reset the product ID
+  };
   return (
     <div>
       <div className="py-3 rounded-lg bg-gray-200 px-3">
@@ -104,11 +102,17 @@ const ManageProducts = () => {
                 </TableCell>
                 <TableCell className="text-right">
                   <button
-                    onClick={() => handleDeleteProduct(singleData?._id)}
+                    onClick={() => handleDeleteOpenModal(singleData._id)}
                     className="text-xl text-[#D32F2F]"
                   >
                     <MdDeleteForever />
                   </button>
+                  {isDeleteModalOpen && selectedDeleteProductId && (
+                    <ProductDeleteModal
+                      id={selectedDeleteProductId}
+                      onClose={handleDeleteCloseModal}
+                    />
+                  )}
                 </TableCell>
                 <TableCell className="text-right">
                   <button
@@ -118,11 +122,10 @@ const ManageProducts = () => {
                     <MdOutlinePublishedWithChanges />
                   </button>
 
-                  {/* Conditionally render the UpdateProduct modal */}
                   {isModalOpen && selectedProductId && (
                     <UpdateProduct
-                      id={selectedProductId} // Pass the selected product's ID
-                      onClose={handleCloseModal} // Pass the close function to the modal
+                      id={selectedProductId}
+                      onClose={handleCloseModal}
                     />
                   )}
                 </TableCell>
