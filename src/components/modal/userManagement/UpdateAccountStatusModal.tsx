@@ -13,17 +13,17 @@ interface UpdateProductProps {
   onClose: () => void; // Close function to manage modal visibility
 }
 
-export function UpdateUserRoleModal({ id, onClose }: UpdateProductProps) {
+export function UpdateAccountStatusModal({ id, onClose }: UpdateProductProps) {
   const { refetch } = useGetAllUsersQuery(undefined);
   const [updateAUser] = useUpdateAUserMutation(undefined);
   const { data, refetch:refetchSingleUserData } = useGetSingleUserQuery(id);
 
   const handleUpdateUserRole = async (userId: string) => {
     try {
-      const updatedRole = data?.data.role === "admin" ? "user" : "admin";
+      const updatedRole = data?.data.deactivate === false ? true : false;
 
       const updateRole = {
-        role: updatedRole,
+        deactivate: updatedRole,
       };
 
       const updateData = {
@@ -32,7 +32,7 @@ export function UpdateUserRoleModal({ id, onClose }: UpdateProductProps) {
       };
 
       await updateAUser(updateData);
-      toast.success("User role updated successfully", {
+      toast.success("User Account updated successfully", {
         duration: 2000,
       });
       await refetchSingleUserData();
@@ -52,7 +52,7 @@ export function UpdateUserRoleModal({ id, onClose }: UpdateProductProps) {
           <div className="flex flex-col justify-center items-center gap-4">
             <div>
               <p className="font-medium text-gray-700 mb-6">
-                Are you sure you want to update the role of this user?
+                Are you sure you want to update the account status of this user?
               </p>
             </div>
             <div className="flex items-center gap-4">

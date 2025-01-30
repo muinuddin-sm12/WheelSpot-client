@@ -13,12 +13,18 @@ import {
 import { useGetAllUsersQuery } from "@/redux/features/user/userApi";
 import { useState } from "react";
 import { UpdateUserRoleModal } from "../modal/userManagement/UpdateUserRoleModal";
+import { UpdateAccountStatusModal } from "../modal/userManagement/UpdateAccountStatusModal";
 
 const ManageUser = () => {
   const { data } = useGetAllUsersQuery(undefined);
   const [isUpdateUserRoleModalOpen, setIsUpdateUserRoleModalOpen] =
     useState(false);
   const [selectedUserId, setSelectedUserId] = useState<string | null>(null);
+  const [isUpdateAccountStatusModalOpen, setIsUpdateAccountStatusModalOpen] =
+    useState(false);
+  const [selectedAccountUserId, setSelectedAccountUserId] = useState<
+    string | null
+  >(null);
   // console.log(data.data);
 
   const handleUpdateRoleOpenModal = (productId: string) => {
@@ -29,6 +35,16 @@ const ManageUser = () => {
   const handleDeleteCloseModal = () => {
     setIsUpdateUserRoleModalOpen(false); // Close the modal
     setSelectedUserId(null); // Reset the product ID
+  };
+
+  const handleUpdateAccountOpenModal = (productId: string) => {
+    setSelectedAccountUserId(productId); // Set the ID of the selected product
+    setIsUpdateAccountStatusModalOpen(true); // Open the modal
+  };
+
+  const handleUpdateAccountCloseModal = () => {
+    setIsUpdateAccountStatusModalOpen(false); // Close the modal
+    setSelectedAccountUserId(null); // Reset the product ID
   };
   return (
     <div>
@@ -50,11 +66,28 @@ const ManageUser = () => {
             <TableRow key={index}>
               <TableCell>{index + 1}</TableCell>
               <TableCell>{singleData?.email}</TableCell>
-              <TableCell className="flex items-center gap-1">{singleData?.role} <span>{singleData?.role === 'admin' && <FaCrown className="text-lg text-yellow-500"/>}</span></TableCell>
+              <TableCell className="flex items-center gap-1">
+                {singleData?.role}{" "}
+                <span>
+                  {singleData?.role === "admin" && (
+                    <FaCrown className="text-lg text-yellow-500" />
+                  )}
+                </span>
+              </TableCell>
               <TableCell className="text-right text-lg">
-                <button>
-                  <FaUserLock />
+                <button
+                  onClick={() => handleUpdateAccountOpenModal(singleData._id)}
+                >
+                  <FaUserLock
+                    className={`${singleData.deactivate && "text-[#D32F2F]"}`}
+                  />
                 </button>
+                {isUpdateAccountStatusModalOpen && selectedAccountUserId && (
+                  <UpdateAccountStatusModal
+                    id={selectedAccountUserId}
+                    onClose={handleUpdateAccountCloseModal}
+                  />
+                )}
               </TableCell>
               <TableCell className="text-right text-lg">
                 <button

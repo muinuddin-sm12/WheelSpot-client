@@ -23,7 +23,11 @@ interface UpdateProductProps {
 
 export function UpdateProduct({ id, onClose }: UpdateProductProps) {
   const { refetch } = useGetAllCarsQuery(undefined);
-  const { data, isLoading } = useGetSingleCarQuery(id);
+  const {
+    data,
+    isLoading,
+    refetch: refetchSingleCar,
+  } = useGetSingleCarQuery(id);
   const [updateAProduct] = useUpdateAProductMutation(undefined);
   // console.log(data)
 
@@ -45,6 +49,7 @@ export function UpdateProduct({ id, onClose }: UpdateProductProps) {
       const updatedData = { id: data?.data?._id, data: productData };
       await updateAProduct(updatedData);
       toast.success("Product updated successfully", { duration: 2000 });
+      await refetchSingleCar();
       onClose();
       refetch();
     } catch (error) {

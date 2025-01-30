@@ -1,15 +1,22 @@
 import logo from "../assets/Logo.png";
 import { IoIosMenu } from "react-icons/io";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "./ui/button";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { logout, selectCurrentUser } from "@/redux/features/auth/authSlice";
+import { toast } from "sonner";
 const Navbar = () => {
   const dispatch = useAppDispatch();
   const userData = useAppSelector(selectCurrentUser);
-  // console.log(userData);
+  const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const handleLogout = () => {
+    toast.success('User Logged out successfully')
+    dispatch(logout())
+    navigate('/');
+  }
   return (
     <div className=" px-6 md:px-12 lg:px-20">
       <div className="flex relative justify-between items-center border-b  py-2">
@@ -22,7 +29,7 @@ const Navbar = () => {
             />
           </Link>
         </div>
-        <div className="hidden md:flex items-center gap-6">
+        <div className="hidden md:flex items-center gap-6 text-sm">
           <Link to={"/"}>Home</Link>
           <Link to={"/all-cars"}>All Cars</Link>
           {userData &&
@@ -35,11 +42,11 @@ const Navbar = () => {
         </div>
         {userData ? (
           <div className="hidden md:flex items-center gap-2">
-            <div className="h-10 w-10 rounded-full bg-black text-red-500 flex items-center justify-center text-xl">
+            <div className="h-[35px] w-[35px] rounded-full bg-black text-red-500 flex items-center justify-center text-xl">
               {userData?.email?.split("")[0].toUpperCase()}
             </div>
             <Button
-              onClick={() => dispatch(logout())}
+              onClick={()=> handleLogout() }
               className="button-primary"
             >
               Logout
