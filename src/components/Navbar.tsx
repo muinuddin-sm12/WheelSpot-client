@@ -36,7 +36,7 @@ const Navbar = () => {
             (userData?.role === "admin" ? (
               <Link to={"/admin-dashboard"}>Dashboard</Link>
             ) : (
-              <Link to={"/user-dashboard"}>Cart</Link>
+              <Link to={"/user-dashboard"}>Dashboard</Link>
             ))}
           <Link to={"/about-us"}>About Us</Link>
         </div>
@@ -91,7 +91,7 @@ const Navbar = () => {
               </Link>
             ) : (
               <Link onClick={() => setIsMenuOpen(false)} to={"/user-dashboard"}>
-                Cart
+                Dashboard
               </Link>
             ))}
           <Link onClick={() => setIsMenuOpen(false)} to={"/about-us"}>
