@@ -15,51 +15,12 @@ const ManageAccount = () => {
     console.log(data);
   }
   return (
-    <div className="max-w-md mx-auto p-6 mt-6 bg-white border border-gray-200 rounded-lg shadow-sm">
-      <h2 className="text-lg text-center text-gray-800 mb-6">
-        Account Information
-      </h2>
-      <form onSubmit={() => handleSubmit(onSubmit)} className="space-y-4">
-        {/* Name Field */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700">Name:</label>
-          <input
-            type="text"
-            {...register('name')}
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-        </div>
-
-        {/* Email Field */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700">Email:</label>
-          <input
-            type="email"
-            {...register('email')}
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-        </div>
-
-        {/* Role Field (Read-only) */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700">Role:</label>
-          <input
-            type="text"
-            name="role"
-            readOnly
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm bg-gray-100 cursor-not-allowed"
-          />
-        </div>
-
-        {/* Submit Button */}
-        <div>
-          <button
-            type="submit"
-            className="w-full px-4 py-2 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          >
-            Update Account
-          </button>
-        </div>
+    <div className="p-6 max-w-sm lg:w-full mx-auto flex-col lg:flex items-center gap-6">
+      <p className="text-sm font-medium mb-4 lg:mb-0">Change Password:</p>
+      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col lg:flex-row gap-2 lg:gap-4">
+        <input type="text" placeholder="Old password" className="px-3 py-1 text-sm rounded-md outline-none" {...register('oldPassword')} />
+        <input type="text" placeholder="New password" className="px-3 py-1 text-sm rounded-md outline-none" {...register('newPassword')} />
+        <button type="submit" className="text-sm border w-[70px] mx-auto py-1 px-2 rounded-md hover:bg-[#D32F2F] hover:text-white">Change</button>
       </form>
     </div>
   );
