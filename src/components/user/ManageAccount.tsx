@@ -7,28 +7,33 @@ import { toast } from "sonner";
 
 const ManageAccount = () => {
   const userData = useAppSelector(selectCurrentUser);
-  const [changePassword] = useChangePasswordMutation(undefined);
+  const [changePassword, {data: changePasswordData}] = useChangePasswordMutation(undefined);
   const { data } = useGetAllUsersQuery(undefined);
   const currentUser = data?.data?.find(
     (item) => item.email === userData?.email
   );
   // console.log(currentUser);
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
   const onSubmit = async (data) => {
     try {
       const passwordChangeData = {
-        userId: currnetUser?._id,
+        userId: currentUser?._id,
         oldPassword: data?.oldPassword,
         newPassword: data?.newPassword,
       };
-
-      await changePassword(passwordChangeData);
-      toast.success('Password changed successfully')
+      console.log(changePasswordData)
+      const {response} = await changePassword(passwordChangeData);
+      if(response?.success){
+        toast.success('Password changed successfully')
+        reset()
+      }else{
+        toast.error(response?.message);
+      }
+      console.log(response);
     } catch (error) {
-      toast.error("Something went wrong");
+      reset();
+      toast.error("Something went wrong", { duration: 2000 });
     }
-
-    console.log(data);
   };
   return (
     <div className="p-6 max-w-sm mx-auto lg:mx-0 lg:w-full flex-col lg:flex-row items-center gap-6">
@@ -41,12 +46,14 @@ const ManageAccount = () => {
           type="text"
           placeholder="Old password"
           className="px-3 py-1 text-sm rounded-md outline-none"
+          required
           {...register("oldPassword")}
         />
         <input
           type="text"
           placeholder="New password"
           className="px-3 py-1 text-sm rounded-md outline-none"
+          required
           {...register("newPassword")}
         />
         <button
