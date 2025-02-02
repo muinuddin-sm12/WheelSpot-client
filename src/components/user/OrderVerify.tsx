@@ -55,28 +55,25 @@ const OrderVerify = () => {
   );
   const orderData: OrderData = data?.data?.[0];
   console.log(data);
-  if (isLoading) {
-    return <p>Loading...</p>;
-  }
   return isLoading ? (
     <Skeleton />
   ) : (
-    <div className="container mx-auto px-6 md:px-12 lg:px-20 ">
-      <h1 className="text-3xl font-bold mb-6">Order Verification</h1>
-      <div className="grid gap-6 md:grid-cols-2">
+    <div className="container mx-auto px-6 md:px-12 lg:px-20 py-6">
+      <h1 className="text-xl font-medium mb-6">Order Verification</h1>
+      <div className="grid gap-4 md:grid-cols-2">
         <Card>
           <CardHeader>
-            <p>Order Details</p>
+            <p className="font-medium">Order Details</p>
           </CardHeader>
           <CardContent>
-            <dl className="grid grid-cols-2 gap-2">
-              <dt className="font-semibold">Order ID:</dt>
+            <dl className="grid grid-cols-2 gap-2 text-sm">
+              <dt className="font-medium">Order ID:</dt>
               <dd>{orderData?.order_id}</dd>
-              <dt className="font-semibold">Amount:</dt>
+              <dt className="font-medium">Amount:</dt>
               <dd>
                 {orderData?.currency} {orderData?.amount?.toFixed(2)}
               </dd>
-              <dt className="font-semibold">Status:</dt>
+              <dt className="font-medium">Status:</dt>
               <dd>
                 <Badge
                   variant={
@@ -84,11 +81,16 @@ const OrderVerify = () => {
                       ? "default"
                       : "destructive"
                   }
+                  className={
+                    orderData?.bank_status === "Success"
+                      ? "bg-green-500 text-white hover:bg-green-600" // Custom success styles
+                      : ""
+                  }
                 >
                   {orderData?.bank_status}
                 </Badge>
               </dd>
-              <dt className="font-semibold">Date:</dt>
+              <dt className="font-medium">Date:</dt>
               <dd>{new Date(orderData?.date_time)?.toLocaleString()}</dd>
             </dl>
           </CardContent>
@@ -96,19 +98,19 @@ const OrderVerify = () => {
 
         <Card>
           <CardHeader>
-            <CardTitle>Payment Information</CardTitle>
+            <p className="font-medium">Payment Information</p>
           </CardHeader>
           <CardContent>
-            <dl className="grid grid-cols-2 gap-2">
-              <dt className="font-semibold">Method:</dt>
+            <dl className="grid grid-cols-2 gap-2 text-sm">
+              <dt className="font-medium">Method:</dt>
               <dd>{orderData?.method}</dd>
-              <dt className="font-semibold">Transaction ID:</dt>
+              <dt className="font-medium">Transaction ID:</dt>
               <dd>{orderData?.bank_trx_id}</dd>
-              <dt className="font-semibold">Invoice No:</dt>
+              <dt className="font-medium">Invoice No:</dt>
               <dd>{orderData?.invoice_no}</dd>
-              <dt className="font-semibold">SP Code:</dt>
+              <dt className="font-medium">SP Code:</dt>
               <dd>{orderData?.sp_code}</dd>
-              <dt className="font-semibold">SP Message:</dt>
+              <dt className="font-medium">SP Message:</dt>
               <dd>{orderData?.sp_message}</dd>
             </dl>
           </CardContent>
@@ -116,10 +118,10 @@ const OrderVerify = () => {
 
         <Card>
           <CardHeader>
-            <CardTitle>Customer Information</CardTitle>
-          </CardHeader>
+            <p className="font-medium">Customer Information</p>
+          </CardHeader> 
           <CardContent>
-            <dl className="grid grid-cols-2 gap-2">
+            <dl className="grid grid-cols-2 gap-2 text-sm">
               <dt className="font-semibold">Name:</dt>
               <dd>{orderData?.name}</dd>
               <dt className="font-semibold">Email:</dt>
@@ -136,10 +138,10 @@ const OrderVerify = () => {
 
         <Card>
           <CardHeader>
-            <CardTitle>Verification Status</CardTitle>
+            <p className="font-medium">Verification Status</p>
           </CardHeader>
           <CardContent>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 text-sm">
               {orderData?.is_verify === 1 ? (
                 <>
                   <CheckCircle className="text-green-500" />
@@ -155,7 +157,7 @@ const OrderVerify = () => {
           </CardContent>
           <CardFooter>
             <Link to="/user-dashboard/orders">
-              <Button className="w-full">View Orders</Button>
+              <Button className="w-full button-primary">View Orders</Button>
             </Link>
           </CardFooter>
         </Card>

@@ -15,6 +15,7 @@ import Register from "@/pages/auth/Register";
 import AllCars from "@/pages/cars/AllCars";
 import Home from "@/pages/home/Home";
 import { createBrowserRouter, Navigate } from "react-router-dom";
+import ProtectedRoute from "./protectedRoutes";
 
 const router = createBrowserRouter([
   {
@@ -57,12 +58,15 @@ const router = createBrowserRouter([
             path: "manage-products",
             element: <ManageProducts />,
           },
-          
         ],
       },
       {
         path: "/user-dashboard",
-        element: <UserDashboard />,
+        element: (
+          <ProtectedRoute>
+            <UserDashboard />
+          </ProtectedRoute>
+        ),
         children: [
           {
             index: true,
@@ -83,9 +87,9 @@ const router = createBrowserRouter([
         element: <AboutUs />,
       },
       {
-        path: '/order/verify',
-        element: <OrderVerify/>
-      }
+        path: "/order/verify",
+        element: <OrderVerify />,
+      },
     ],
   },
   { path: "/login", element: <Login /> },

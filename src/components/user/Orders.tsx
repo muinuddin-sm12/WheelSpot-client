@@ -24,12 +24,6 @@ const Orders = () => {
   const CurrentUserOrders = data?.data?.filter(
     (item) => item?.user === currentUserData?._id
   );
-  const handlePayment = async() => {
-  //   window.location.href = paymentLink?.orderLink;
-
-  //  await verifyPayment(OrderId);
-   
-  }
   return (
     <div>
       <div className="py-3 rounded-lg bg-gray-300 px-4">
@@ -65,7 +59,6 @@ const Orders = () => {
               </TableCell>
               <TableCell className="text-right ">
                 <button
-                onClick={handlePayment}
                   className={`px-2 py-1 bg-green-500 rounded-lg text-white font-medium ${
                     singleData?.status === "Paid" && "bg-gray-500 text-gray-700"
                   }`}

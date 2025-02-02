@@ -15,7 +15,7 @@ const FeatureProducts = () => {
       <div className="flex items-center justify-between mb-4 w-full mt-12">
         <h1 className="text-xl font-medium">Our Latest Cars</h1>
         <div>
-          <Link className="uppercase flex items-center text-[#D32F2F] font-medium text-sm" to={"/"}>view all cars <MdKeyboardArrowRight className="text-xl"/></Link>
+          <Link className="uppercase flex items-center text-[#D32F2F] font-medium text-sm" to={"/all-cars"}>view all cars <MdKeyboardArrowRight className="text-xl"/></Link>
         </div>
       </div>
       <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-6 justify-center lg:grid-cols-4">
