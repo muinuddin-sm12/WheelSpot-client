@@ -1,19 +1,35 @@
-import { selectCurrentUser } from '@/redux/features/auth/authSlice';
-import { useGetAllOrdersQuery } from '@/redux/features/order/orderApi';
-import { useAppSelector } from '@/redux/hooks';
-import { useLocation } from 'react-router-dom'
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../ui/table';
-import { FaUserLock } from 'react-icons/fa';
+import { selectCurrentUser } from "@/redux/features/auth/authSlice";
+import { useGetAllOrdersQuery } from "@/redux/features/order/orderApi";
+import { useAppSelector } from "@/redux/hooks";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "../ui/table";
+import { useGetAllUsersQuery } from "@/redux/features/user/userApi";
+import { MdDeleteForever } from "react-icons/md";
 
 const Orders = () => {
-  const location = useLocation();
-  const _paymentLink = location?.state || {};
-  // console.log(paymentLink)
-  const {data} = useGetAllOrdersQuery(undefined);
-  console.log(data)
+  const { data } = useGetAllOrdersQuery(undefined);
+  // console.log(data);
   const currentUser = useAppSelector(selectCurrentUser);
-  const CurrentUserOrders = data?.data?.map((item) => item.email === currentUser.email);
+  const { data: allUserData } = useGetAllUsersQuery(undefined);
+  const currentUserData = allUserData?.data?.find(
+    (item) => item.email === currentUser?.email
+  );
+  // console.log(currentUser)
+  const CurrentUserOrders = data?.data?.filter(
+    (item) => item?.user === currentUserData?._id
+  );
+  const handlePayment = async() => {
+  //   window.location.href = paymentLink?.orderLink;
 
+  //  await verifyPayment(OrderId);
+   
+  }
   return (
     <div>
       <div className="py-3 rounded-lg bg-gray-300 px-4">
@@ -22,31 +38,52 @@ const Orders = () => {
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead>Index</TableHead>
-            <TableHead>Email</TableHead>
-            <TableHead>Role</TableHead>
-            <TableHead className="text-right">Deactivate User</TableHead>
-            <TableHead className="text-right">Update Role</TableHead>
+            <TableHead>Product Id</TableHead>
+            <TableHead>Price</TableHead>
+            <TableHead>Quantity</TableHead>
+            <TableHead>Status</TableHead>
+            <TableHead className="text-right">Pay Now</TableHead>
+            <TableHead className="text-right">Delete Order</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
-          {CurrentUserOrders?.map((singleData, index) => (
+          {CurrentUserOrders?.reverse()?.map((singleData, index) => (
             <TableRow key={index}>
-              <TableCell>{index + 1}</TableCell>
-              <TableCell>sdfa</TableCell>
-              <TableCell className="flex items-center gap-1">
-                abr
+              <TableCell>{singleData?.products[0]?.product}</TableCell>
+              <TableCell>$ {singleData?.totalPrice}</TableCell>
+              <TableCell>{singleData?.products[0]?.quantity}</TableCell>
+              <TableCell
+                className={`${
+                  singleData?.status === "Pending"
+                    ? "text-[#FF9800]"
+                    : singleData?.status === "Paid"
+                    ? "text-[#4CAF50]"
+                    : "text-[#F44336]"
+                } font-medium`}
+              >
+                {singleData?.status}
               </TableCell>
-              <TableCell className="text-right text-lg">
+              <TableCell className="text-right ">
                 <button
-                  
+                onClick={handlePayment}
+                  className={`px-2 py-1 bg-green-500 rounded-lg text-white font-medium ${
+                    singleData?.status === "Paid" && "bg-gray-500 text-gray-700"
+                  }`}
+                  disabled={singleData?.status === "Paid"}
                 >
-                  fgdrg
+                  Pay Now
                 </button>
               </TableCell>
-              <TableCell className="text-right text-lg">
+              <TableCell className="text-right">
                 <button
-                >dfasf
+                  className={`${
+                    singleData?.status === "Paid"
+                      ? "text-gray-500"
+                      : "text-[#F44336]"
+                  } font-medium text-lg `}
+                  disabled={singleData?.status === "Paid"}
+                >
+                  <MdDeleteForever />
                 </button>
               </TableCell>
             </TableRow>
@@ -54,7 +91,7 @@ const Orders = () => {
         </TableBody>
       </Table>
     </div>
-  )
-}
+  );
+};
 
-export default Orders
+export default Orders;

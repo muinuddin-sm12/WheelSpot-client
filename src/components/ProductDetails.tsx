@@ -38,6 +38,7 @@ const ProductDetails = () => {
   // console.log(success)
   const handleOrder = async (data) => {
     try {
+      const toastId = toast.loading('Order placing..', {duration: 2000})
       const orderData = {
         user: currentUserId,
         products: [{ product: _id, quantity: 1 }],
@@ -46,10 +47,11 @@ const ProductDetails = () => {
       const response = await orderProduct(orderData).unwrap();
       console.log('response', response)
       if (response.status) {
-        toast.success("Order placed successfully!");
-        navigate("/user-dashboard/orders", { state: { orderLink: response.data } });
+        toast.success("Order placed successfully!", {id: toastId, duration: 2000});
+        window.location.href = response.data;
+        // window.location.reload();
       } else {
-        toast.error(response.message || "Failed to place order.");
+        toast.error(response.message || "Failed to place order.", {id: toastId, duration: 2000});
       }
     } catch (error) {
       console.log(error);
@@ -94,12 +96,6 @@ const ProductDetails = () => {
               >
                 Buy Now
               </Button>
-              {/* {isModalOpen && selectedProductId && (
-                <PaymentModal
-                  id={selectedProductId}
-                  onClose={handleCloseModal}
-                />
-              )} */}
             </div>
             <div className="mt-4">
               <p className="font-medium text-gray-700">Description:</p>

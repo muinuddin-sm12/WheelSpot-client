@@ -8,6 +8,7 @@ import UserDashboard from "@/components/dashboard/UserDashboard";
 import ProductDetails from "@/components/ProductDetails";
 import ManageAccount from "@/components/user/ManageAccount";
 import Orders from "@/components/user/Orders";
+import OrderVerify from "@/components/user/OrderVerify";
 import AboutUs from "@/pages/about/AboutUs";
 import Login from "@/pages/auth/Login";
 import Register from "@/pages/auth/Register";
@@ -81,6 +82,10 @@ const router = createBrowserRouter([
         path: "/about-us",
         element: <AboutUs />,
       },
+      {
+        path: '/order/verify',
+        element: <OrderVerify/>
+      }
     ],
   },
   { path: "/login", element: <Login /> },
