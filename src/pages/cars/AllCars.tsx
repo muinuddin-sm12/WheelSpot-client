@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { IoSearchSharp } from "react-icons/io5";
 import { Button } from "@/components/ui/button";
+import Skeleton from "@/components/Skeleton";
 
 const AllCars = () => {
   const navigate = useNavigate();
@@ -117,9 +118,9 @@ const AllCars = () => {
                 ))}
             </div>
           ) : (
-            <p className="text-sm text-center flex items-center justify-center h-[60vh]">
-              No cars available.
-            </p>
+            <div className="w-full">
+              <Skeleton/>
+            </div>
           )}
         </div>
       </div>
