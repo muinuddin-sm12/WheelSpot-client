@@ -9,10 +9,9 @@ import { useOrderProductMutation } from "@/redux/features/order/orderApi";
 
 const ProductDetails = () => {
   const { id } = useParams();
-  const navigate = useNavigate();
   const currentUserData = useAppSelector(selectCurrentUser);
   const { data: userData } = useGetAllUsersQuery(undefined);
-  const [orderProduct, { data: orderData }] =
+  const [orderProduct ] =
     useOrderProductMutation(undefined);
   const currentUser = userData?.data?.find(
     (item) => item.email === currentUserData.email
@@ -77,7 +76,7 @@ const ProductDetails = () => {
               Price: <span className="text-lg">${price}</span>
             </span>
             <br />
-            <span className="text-sm">
+            <span className="text-sm font-medium">
               Stock:{" "}
               {inStock ? (
                 <span className="text-green-600">Abailable</span>

@@ -65,7 +65,7 @@ const Navbar = () => {
         </div>
         <div
           className={`absolute md:hidden py-20 top-0 z-10 left-0 w-full bg-white flex flex-col items-center gap-6 transform transition-transform ${
-            isMenuOpen ? "opacity-100" : "opacity-0"
+            isMenuOpen ? "opacity-100" : "hidden"
           }`}
           style={{ transition: "transform 0.3s ease, opacity 0.3s ease" }}
         >

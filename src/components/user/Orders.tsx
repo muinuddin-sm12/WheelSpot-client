@@ -59,8 +59,8 @@ const Orders = () => {
               </TableCell>
               <TableCell className="text-right ">
                 <button
-                  className={`px-2 py-1 bg-green-500 rounded-lg text-white font-medium ${
-                    singleData?.status === "Paid" && "bg-gray-500 text-gray-700"
+                  className={`px-2 py-1 rounded-lg text-white font-medium ${
+                    singleData?.status === "Paid" ? "bg-gray-500 text-gray-700":"bg-green-500 text-white"
                   }`}
                   disabled={singleData?.status === "Paid"}
                 >

@@ -48,9 +48,9 @@ const AllCars = () => {
   console.log(data?.data)
   return (
     <div className="h-screen overflow-y-auto px-6 md:px-12 lg:px-20">
-      <div className="flex flex-col lg:flex-row">
+      <div className="flex flex-col lg:flex-row z-[999]">
         {/* sidebar */}
-        <div className="w-full lg:w-[20%] bg-gray-100 p-6">
+        <div className="w-full lg:w-[20%] bg-gray-100 mt-4 md:mt-0 md:p-6">
           <h3 className="font-semibold mb-5">Search & Filter</h3>
 
           {/* Brand Filter Dropdown */}
@@ -86,7 +86,7 @@ const AllCars = () => {
             Clear Filters
           </Button>
         </div>
-        <div className="lg:flex-1 lg:py-6 pl-6">
+        <div className="lg:flex-1 lg:py-6 md:pl-6">
           {/* search field  */}
           <div className="h-14 w-[60%] flex items-center justify-center mx-auto mb-6">
             <form
