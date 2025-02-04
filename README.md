@@ -1,50 +1,64 @@
-# React + TypeScript + Vite
+# WheelSpot (A car shop)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Project Overview
 
-Currently, two official plugins are available:
+The Wheelspot is a responsive e-commerce platform that allows users to view, search, and purchase cars. It also provides a role-based authentication system with user and admin roles. Admins can manage products, users, and orders, while regular users can view product details, place orders, and manage their profiles.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Key Features
 
-## Expanding the ESLint configuration
+### User Registration & Authentication
+- Users can register with their name, email, and password.
+- By default, registered users are assigned the "user" role.
+- Admins can manage the user roles.
+- Secure authentication with JWT (JSON Web Token) to handle user sessions.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Public Routes
+- **Home Page**: Includes a Navbar, Banner, Featured Products, Footer, and other relevant content like testimonials or blogs.
+- **All Products Page**: Allows users to search and filter products by various attributes (price range, model, brand, category, availability).
+- **Product Details Page**: Displays detailed information about a specific product with an option to "Buy Now".
+- **About Page**: Provides information about the shop and its mission.
 
-- Configure the top-level `parserOptions` property like this:
+### Private Routes
+- **Checkout Page**: Users can place orders with validation on product stock.
+- **Admin Dashboard**: Manage users, products, and orders.
+- **User Dashboard**: View order history, manage account settings, and update passwords.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+### UI/UX Design
+- The platform is fully responsive and works seamlessly on all screen sizes.
+- User-friendly error messages and loading states are displayed during API calls.
+- Toast notifications for actions like successful login or order placement.
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### Error Handling
+- Proper error messages for invalid login, registration errors, and failed operations (e.g., out-of-stock products).
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+### Payment Integration
+- Integrated **SurjoPay** as the payment gateway to process transactions.
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+## Technology Stack
+
+- **Frontend**: 
+  - TypeScript
+  - React
+  - Redux
+  - React Router
+  - Tailwind CSS (for styling)
+  - RTK Query (for data fetching)
+  - Axios (for API requests)
+
+- **Backend**:
+  - Node.js
+  - Express.js
+  - MongoDB (for data storage)
+  - JWT (for authentication)
+  - Mongoose (for MongoDB interactions)
+  - Stripe / SurjoPay (for payment integration)
+
+## Setup Instructions
+
+### 1. Clone the Repositories
+
+Clone both the **frontend** and **backend** repositories to your local machine.
+
+```bash
+git clone <https://github.com/muinuddin-sm12/L2-Assignment-4-frontend>
+git clone <https://github.com/muinuddin-sm12/L2-Assignment-4-backend>
