@@ -56,7 +56,7 @@ const Review = () => {
         <h1 className="text-xl font-medium">User Review</h1>
         <div>
           <Link
-            to={"/"}
+            to={"/review"}
             className="uppercase flex items-center text-[#D32F2F] text-sm font-medium "
           >
             write a review <MdKeyboardArrowRight className="text-xl"/>

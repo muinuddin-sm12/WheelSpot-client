@@ -16,6 +16,7 @@ import AllCars from "@/pages/cars/AllCars";
 import Home from "@/pages/home/Home";
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import ProtectedRoute from "./protectedRoutes";
+import ReviewPage from "@/pages/review/ReviewPage";
 
 const router = createBrowserRouter([
   {
@@ -93,6 +94,10 @@ const router = createBrowserRouter([
       {
         path: "/order/verify",
         element: <OrderVerify />,
+      },
+      {
+        path: "/review",
+        element: <ReviewPage />,
       },
     ],
   },

@@ -44,7 +44,7 @@ const ProductDetails = () => {
       };
       // console.log(orderData);
       const response = await orderProduct(orderData).unwrap();
-      console.log('response', response)
+      // console.log('response', response)
       if (response.status) {
         toast.success("Order placed successfully!", {id: toastId, duration: 2000});
         window.location.href = response.data;
