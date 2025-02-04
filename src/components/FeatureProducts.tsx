@@ -32,7 +32,20 @@ const FeatureProducts = () => {
             .reverse()
             .slice(0, 8)
             .map((singleData: TCar) => (
-              <ProductCard key={singleData._id} data={singleData} />
+              <ProductCard
+                key={singleData._id}
+                data={singleData}
+                _id={""}
+                brand={""}
+                model={""}
+                year={0}
+                price={0}
+                category={"Sedan"}
+                description={""}
+                quantity={0}
+                inStock={false}
+                image={""}
+              />
             ))}
         </div>
       )}

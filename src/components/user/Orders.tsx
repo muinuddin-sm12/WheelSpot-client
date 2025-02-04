@@ -13,6 +13,7 @@ import {
 import { useGetAllUsersQuery } from "@/redux/features/user/userApi";
 import { MdDeleteForever } from "react-icons/md";
 import Skeleton from "../Skeleton";
+import { ReactElement, JSXElementConstructor, ReactNode, ReactPortal, Key } from "react";
 
 const Orders = () => {
   const { data } = useGetAllOrdersQuery(undefined);
@@ -54,7 +55,9 @@ const Orders = () => {
               </TableCell>
             </TableRow>
           ) : (
-            CurrentUserOrders?.reverse()?.map((singleData, index) => (
+            CurrentUserOrders?.reverse()?.map((singleData: { products: {
+              product: ReactNode; quantity: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; 
+}[]; totalPrice: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; status: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | null | undefined; }, index: Key | null | undefined) => (
               <TableRow key={index}>
                 <TableCell>{singleData?.products[0]?.product}</TableCell>
                 <TableCell>$ {singleData?.totalPrice}</TableCell>

@@ -4,6 +4,7 @@ import { IoLogoUsd } from "react-icons/io5";
 
 
 const ProductCard = (data: TCar) => {
+  // console.log(data)
   const { _id, brand, category, model, price, year, image } = data.data;
   const carTitle = brand.concat(model);
   return (

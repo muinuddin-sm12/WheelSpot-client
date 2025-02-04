@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import WSForm from "../form/WSForm";
 import WSInput from "../form/WSInput";
 import { toast } from "sonner";
@@ -74,8 +76,8 @@ const AddProducts = () => {
                   {...field}
                   type="file"
                   accept="image/*"
-                  value={field?.fileName}
-                  onChange={(e) => field.onChange(e.target.files?.[0])}
+                  value={(field as any)?.fileName}
+                  onChange={(e) => {field.onChange(e.target.files?.[0])}}
                 />
               </Form.Item>
             )}

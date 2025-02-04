@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { selectCurrentUser } from "@/redux/features/auth/authSlice";
 import { usePostReviewMutation } from "@/redux/features/review/reviewApi";
@@ -17,11 +18,11 @@ const ReviewPage = () => {
   const currentUser = useAppSelector(selectCurrentUser);
   const { data: allUserData } = useGetAllUsersQuery(undefined);
   const currentUserData = allUserData?.data?.find(
-    (item) => item.email === currentUser?.email
+    (item: { email: string }) => item.email === currentUser?.email
   );
   //   console.log(currentUserData);
   const { register, handleSubmit, reset } = useForm();
-  const onSubmit = async (data) => {
+  const onSubmit = async (data: any) => {
     const toastId = toast.loading("Uploading you review...", {
       duration: 2000,
     });
@@ -35,9 +36,9 @@ const ReviewPage = () => {
         customerName: currentUserData.name,
         date: new Date().toLocaleDateString(),
       };
-    //   console.log(reviewData);
+      //   console.log(reviewData);
       const res = await postReview(reviewData).unwrap();
-    //   console.log(res)
+      //   console.log(res)
       if (res.status) {
         toast.success("Review Uploaded Successfully", {
           id: toastId,
@@ -45,15 +46,15 @@ const ReviewPage = () => {
         });
         setRating(0);
         reset();
-        navigate('/')
+        navigate("/");
       }
     } catch (error) {
-    //   console.log(error);
+      //   console.log(error);
       toast.error("Something went wrong!", { id: toastId, duration: 2000 });
       reset();
     }
   };
-  const handleRating = (rating) => {
+  const handleRating = (rating: any) => {
     // console.log(typeof rating);
     setRating(rating);
   };

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { MdOutlinePublishedWithChanges } from "react-icons/md";
 import { FaUserLock } from "react-icons/fa";
 import { FaCrown } from "react-icons/fa";
@@ -11,7 +12,7 @@ import {
   TableRow,
 } from "../ui/table";
 import { useGetAllUsersQuery } from "@/redux/features/user/userApi";
-import { useState } from "react";
+import { JSXElementConstructor, ReactElement, ReactNode, ReactPortal, useState } from "react";
 import { UpdateUserRoleModal } from "../modal/userManagement/UpdateUserRoleModal";
 import { UpdateAccountStatusModal } from "../modal/userManagement/UpdateAccountStatusModal";
 
@@ -62,7 +63,7 @@ const ManageUser = () => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {data?.data?.map((singleData, index) => (
+          {data?.data?.map((singleData: { email: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; role: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | null | undefined; _id: string; deactivate: any; }, index: number) => (
             <TableRow key={index}>
               <TableCell>{index + 1}</TableCell>
               <TableCell>{singleData?.email}</TableCell>

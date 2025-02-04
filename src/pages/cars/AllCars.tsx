@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import ProductCard from "@/components/ProductCard";
 import { useGetAllCarsQuery } from "@/redux/features/cars/carApi";
 import { TCar } from "@/types/global";
@@ -6,6 +7,9 @@ import { useNavigate } from "react-router-dom";
 import { IoSearchSharp } from "react-icons/io5";
 import { Button } from "@/components/ui/button";
 import Skeleton from "@/components/Skeleton";
+
+
+
 
 const AllCars = () => {
   const navigate = useNavigate();
@@ -18,7 +22,7 @@ const AllCars = () => {
     filter: filterTerm || undefined,
   });
   // Get unique car brands for the filter dropdown
-  const uniqueBrands = [...new Set(data?.data?.map((car) => car.brand))];
+  const uniqueBrands = [...new Set((data?.data as any[])?.map((car) => car.brand))];
 
   // Handle brand filter change
   const handleBrandChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -36,7 +40,7 @@ const AllCars = () => {
     navigate(`?${params.toString()}`);
     refetch(); // Refetch data with the new query parameters
   };
-  const onSearchSubmit = (formData: { searchTerm: string }) => {
+  const onSearchSubmit = (formData: any) => {
     const params = new URLSearchParams(window.location.search);
     params.set('search', formData.searchTerm);
     navigate(`?${params.toString()}`);
@@ -68,8 +72,8 @@ const AllCars = () => {
               <option value="" className="text-sm">
                 All Brands
               </option>
-              {uniqueBrands.map((brand) => (
-                <option key={brand} value={brand}>
+              {uniqueBrands.map((brand:string, index:number) => (
+                <option key={index} value={brand}>
                   {brand}
                 </option>
               ))}
@@ -111,7 +115,7 @@ const AllCars = () => {
                 ?.slice()
                 .reverse()
                 .map((singleData: TCar) => (
-                  <ProductCard key={singleData._id} data={singleData} />
+                  <ProductCard key={singleData._id} data={singleData} _id={""} brand={""} model={""} year={0} price={0} category={"Sedan"} description={""} quantity={0} inStock={false} image={""} />
                 ))}
             </div>
           ) : (

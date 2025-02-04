@@ -1,4 +1,5 @@
 export type TCar = {
+    data: { _id: any; brand: any; category: any; model: any; price: any; year: any; image: any; };
     _id: string;
     brand: string;
     model: string;

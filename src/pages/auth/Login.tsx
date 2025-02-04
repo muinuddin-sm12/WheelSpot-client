@@ -32,7 +32,7 @@ const Login = () => {
       toast.success("Logged in", { id: toastId, duration: 2000 });
       navigate("/");
     } catch (err) {
-      toast.error("Invalid Crentials!", { id: toastId, duration: 2000 });
+      toast.error("Invalid Credentials!", { id: toastId, duration: 2000 });
     }
   };
   return (

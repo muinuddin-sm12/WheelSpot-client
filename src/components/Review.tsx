@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { CardContent } from "@/components/ui/card";
 import {
   Carousel,
@@ -11,6 +12,7 @@ import { useGetAllReviewsQuery } from "@/redux/features/review/reviewApi";
 import { MdKeyboardArrowRight } from "react-icons/md";
 
 import { Link } from "react-router-dom";
+import { ReactElement, JSXElementConstructor, ReactNode, ReactPortal, Key } from "react";
 
 const Review = () => {
   const {data, isLoading} = useGetAllReviewsQuery(undefined);
@@ -36,7 +38,7 @@ const Review = () => {
         }}
       >
         <CarouselContent className="flex gap-2">
-          {data?.data?.map((data, index) => (
+          {data?.data?.map((data: { carName: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; rating: number | undefined; review: string | any[]; image: string | undefined; customerName: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; date: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; }, index: Key | null | undefined) => (
             <CarouselItem
               key={index}
               className="basis-full md:basis-1/2 lg:basis-1/3"

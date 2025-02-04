@@ -15,8 +15,8 @@ import Register from "@/pages/auth/Register";
 import AllCars from "@/pages/cars/AllCars";
 import Home from "@/pages/home/Home";
 import { createBrowserRouter, Navigate } from "react-router-dom";
-import ProtectedRoute from "./protectedRoutes";
 import ReviewPage from "@/pages/review/ReviewPage";
+import ProtectedRoute from "./ProtectedRoutes";
 
 const router = createBrowserRouter([
   {

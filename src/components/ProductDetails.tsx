@@ -16,7 +16,7 @@ const ProductDetails = () => {
   const { data: userData } = useGetAllUsersQuery(undefined);
   const [orderProduct] = useOrderProductMutation(undefined);
   const currentUser = userData?.data?.find(
-    (item) => item.email === currentUserData!.email
+    (item: any) => item.email === currentUserData!.email
   );
   const currentUserId = currentUser?._id;
 
@@ -25,7 +25,7 @@ const ProductDetails = () => {
   if(isLoading){
     return <Skeleton/>
   }
-  console.log(data)
+  // console.log(data)
   const {
     _id,
     brand,

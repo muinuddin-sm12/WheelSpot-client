@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import {
-  useDeleteAProductMutation,
   useGetAllCarsQuery,
 } from "@/redux/features/cars/carApi";
 import {
