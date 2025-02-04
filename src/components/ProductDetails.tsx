@@ -1,27 +1,31 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useGetSingleCarQuery } from "@/redux/features/cars/carApi";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Button } from "./ui/button";
 import { selectCurrentUser } from "@/redux/features/auth/authSlice";
 import { useAppSelector } from "@/redux/hooks";
 import { useGetAllUsersQuery } from "@/redux/features/user/userApi";
 import { toast } from "sonner";
 import { useOrderProductMutation } from "@/redux/features/order/orderApi";
+import Skeleton from "./Skeleton";
 
 const ProductDetails = () => {
   const { id } = useParams();
   const currentUserData = useAppSelector(selectCurrentUser);
   const { data: userData } = useGetAllUsersQuery(undefined);
-  const [orderProduct ] =
-    useOrderProductMutation(undefined);
+  const [orderProduct] = useOrderProductMutation(undefined);
   const currentUser = userData?.data?.find(
-    (item) => item.email === currentUserData.email
+    (item) => item.email === currentUserData!.email
   );
   const currentUserId = currentUser?._id;
 
   const { data, isLoading } = useGetSingleCarQuery(id);
-  if (isLoading) {
-    return <p>Loading..</p>;
+  
+  if(isLoading){
+    return <Skeleton/>
   }
+  console.log(data)
   const {
     _id,
     brand,
@@ -35,9 +39,9 @@ const ProductDetails = () => {
   } = data.data;
 
   // console.log(success)
-  const handleOrder = async (data) => {
+  const handleOrder = async () => {
     try {
-      const toastId = toast.loading('Order placing..', {duration: 2000})
+      const toastId = toast.loading("Order placing..", { duration: 2000 });
       const orderData = {
         user: currentUserId,
         products: [{ product: _id, quantity: 1 }],
@@ -46,19 +50,25 @@ const ProductDetails = () => {
       const response = await orderProduct(orderData).unwrap();
       // console.log('response', response)
       if (response.status) {
-        toast.success("Order placed successfully!", {id: toastId, duration: 2000});
+        toast.success("Order placed successfully!", {
+          id: toastId,
+          duration: 2000,
+        });
         window.location.href = response.data;
-        // window.location.reload();
       } else {
-        toast.error(response.message || "Failed to place order.", {id: toastId, duration: 2000});
+        toast.error(response.message || "Failed to place order.", {
+          id: toastId,
+          duration: 2000,
+        });
       }
     } catch (error) {
       console.log(error);
     }
-    // console.log(data);
   };
 
-  return (
+  return isLoading ? (
+    <Skeleton />
+  ) : (
     <div className="px-6 md:px-12 lg:px-20 w-full flex flex-col md:flex-row items-start gap-6 py-6 md:py-12 lg:py-16">
       <div className="h-[400px] overflow-hidden flex-1">
         <img
@@ -87,7 +97,7 @@ const ProductDetails = () => {
 
             <div>
               <Button
-                onClick={() => handleOrder(_id)}
+                onClick={() => handleOrder()}
                 className={`button-primary mt-4 ${
                   !inStock ? "opacity-50 cursor-not-allowed" : ""
                 }`}

@@ -32,7 +32,7 @@ const AddProducts = () => {
         quantity: Number(data?.stock),
         image: imageUrl,
       };
-      console.log(productData)
+      // console.log(productData)
       await addProducts(productData);
       toast.success("Product Created Successfully", {
         id: toastId,

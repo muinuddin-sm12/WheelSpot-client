@@ -5,7 +5,6 @@ import {
   CardContent,
   CardFooter,
   CardHeader,
-  CardTitle,
 } from "../ui/card";
 import { Badge } from "../ui/badge";
 import { AlertCircle, CheckCircle } from "lucide-react";
@@ -54,7 +53,7 @@ const OrderVerify = () => {
     { refetchOnMountOrArgChange: true }
   );
   const orderData: OrderData = data?.data?.[0];
-  console.log(data);
+  // console.log(data);
   return isLoading ? (
     <Skeleton />
   ) : (

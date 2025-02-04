@@ -25,7 +25,7 @@ const Login = () => {
         password: data.password,
       };
       const res = await login(registerData).unwrap();
-      console.log(res);
+      // console.log(res);
       const userAccessToken = res.data.accessToken;
       const userInfo = verifyToken(userAccessToken);
       dispatch(setUser({ user: userInfo, token: userAccessToken }));

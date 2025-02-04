@@ -1,20 +1,25 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { selectCurrentUser } from "@/redux/features/auth/authSlice";
+import { usePostReviewMutation } from "@/redux/features/review/reviewApi";
 import { useGetAllUsersQuery } from "@/redux/features/user/userApi";
 import { useAppSelector } from "@/redux/hooks";
 import { uploadPhoto } from "@/utils/uploadPhoto";
 import { Rate } from "antd";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
 const ReviewPage = () => {
   const [rating, setRating] = useState(0);
+  const navigate = useNavigate();
+  const [postReview] = usePostReviewMutation();
   const currentUser = useAppSelector(selectCurrentUser);
   const { data: allUserData } = useGetAllUsersQuery(undefined);
   const currentUserData = allUserData?.data?.find(
     (item) => item.email === currentUser?.email
   );
-//   console.log(currentUserData);
+  //   console.log(currentUserData);
   const { register, handleSubmit, reset } = useForm();
   const onSubmit = async (data) => {
     const toastId = toast.loading("Uploading you review...", {
@@ -24,22 +29,28 @@ const ReviewPage = () => {
       const imageUrl = await uploadPhoto(data?.userImage[0]);
       const reviewData = {
         carName: data.carName,
-        rating,
+        rating: rating,
         review: data.review,
         image: imageUrl,
         customerName: currentUserData.name,
         date: new Date().toLocaleDateString(),
       };
-      console.log(reviewData);
-      reset();
-      toast.success("Review Uploaded Successfully", {
-        id: toastId,
-        duration: 2000,
-      });
+    //   console.log(reviewData);
+      const res = await postReview(reviewData).unwrap();
+    //   console.log(res)
+      if (res.status) {
+        toast.success("Review Uploaded Successfully", {
+          id: toastId,
+          duration: 2000,
+        });
+        setRating(0);
+        reset();
+        navigate('/')
+      }
     } catch (error) {
-      console.log(error);
-      toast.error("Something went wrong!", {id:toastId, duration: 2000});
-      reset()
+    //   console.log(error);
+      toast.error("Something went wrong!", { id: toastId, duration: 2000 });
+      reset();
     }
   };
   const handleRating = (rating) => {

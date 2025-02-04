@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useChangePasswordMutation } from "@/redux/features/auth/authApi";
 import { selectCurrentUser } from "@/redux/features/auth/authSlice";
 import { useGetAllUsersQuery } from "@/redux/features/user/userApi";
@@ -7,21 +8,21 @@ import { toast } from "sonner";
 
 const ManageAccount = () => {
   const userData = useAppSelector(selectCurrentUser);
-  const [changePassword, {data: changePasswordData}] = useChangePasswordMutation(undefined);
+  const [changePassword ] = useChangePasswordMutation(undefined);
   const { data } = useGetAllUsersQuery(undefined);
   const currentUser = data?.data?.find(
     (item) => item.email === userData?.email
   );
   // console.log(currentUser);
   const { register, handleSubmit, reset } = useForm();
-  const onSubmit = async (data) => {
+  const onSubmit = async (data: { oldPassword: string; newPassword: string; }) => {
     try {
       const passwordChangeData = {
         userId: currentUser?._id,
         oldPassword: data?.oldPassword,
         newPassword: data?.newPassword,
       };
-      console.log(changePasswordData)
+      // console.log(changePasswordData)
       const {response} = await changePassword(passwordChangeData);
       if(response?.success){
         toast.success('Password changed successfully')

@@ -36,9 +36,6 @@ const AllCars = () => {
     navigate(`?${params.toString()}`);
     refetch(); // Refetch data with the new query parameters
   };
-  // if (isLoading) {
-  //   return <p>Loading...</p>;
-  // }
   const onSearchSubmit = (formData: { searchTerm: string }) => {
     const params = new URLSearchParams(window.location.search);
     params.set('search', formData.searchTerm);
@@ -46,7 +43,7 @@ const AllCars = () => {
     refetch(); // Refetch data with the new query parameters
   };
 
-  console.log(data?.data)
+  // console.log(data?.data)
   return (
     <div className="h-screen overflow-y-auto px-6 md:px-12 lg:px-20">
       <div className="flex flex-col lg:flex-row z-[999]">

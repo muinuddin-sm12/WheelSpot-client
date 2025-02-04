@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { selectCurrentUser } from "@/redux/features/auth/authSlice";
 import { useGetAllOrdersQuery } from "@/redux/features/order/orderApi";
 import { useAppSelector } from "@/redux/hooks";
@@ -19,12 +20,16 @@ const Orders = () => {
   const currentUser = useAppSelector(selectCurrentUser);
   const { data: allUserData, isLoading } = useGetAllUsersQuery(undefined);
   const currentUserData = allUserData?.data?.find(
-    (item) => item.email === currentUser?.email
+    (item: { email: string | undefined }) => item.email === currentUser?.email
   );
   // console.log(currentUser)
   const CurrentUserOrders = data?.data?.filter(
-    (item) => item?.user === currentUserData?._id
+    (item: { user: any }) => item?.user === currentUserData?._id
   );
+  if (CurrentUserOrders?.length < 1) {
+    return <p className="text-sm text-center py-10">No data available</p>;
+  }
+  // console.log(CurrentUserOrders)
   return (
     <div>
       <div className="py-3 rounded-lg bg-gray-300 px-4">

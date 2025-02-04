@@ -13,7 +13,7 @@ const Register = () => {
   const navigate = useNavigate()
   const [register] = useRegisterMutation(undefined);
   const onSubmit = async (data: FieldValues) => {
-    console.log(data);
+    // console.log(data);
     const toastId = toast.loading("User registering...", { duration: 2000 });
     try {
       const registerData = {
