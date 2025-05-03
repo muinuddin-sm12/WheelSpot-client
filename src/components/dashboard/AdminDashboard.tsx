@@ -4,7 +4,7 @@ const menuItems = [
   { path: "add-products", label: "Add Product" },
   { path: "manage-products", label: "Manage Product" },
   { path: "manage-user", label: "Manage User" },
-  // { path: "manage-orders", label: "Manage Order" },
+  { path: "manage-orders", label: "Manage Order" },
 ];
 const AdminDashboard = () => {
   const location = useLocation();
