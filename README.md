@@ -4,6 +4,11 @@
 
 The Wheelspot is a responsive e-commerce platform that allows users to view, search, and purchase cars. It also provides a role-based authentication system with user and admin roles. Admins can manage products, users, and orders, while regular users can view product details, place orders, and manage their profiles.
 
+## 🔗 Live Demo
+
+- Frontend: [wheel-spot-client.vercel.app](https://wheel-spot-client.vercel.app)
+- Backend Repo: [WheelSpot-server](https://github.com/muinuddin-sm12/WheelSpot-server)
+
 ## Key Features
 
 ### User Registration & Authentication
@@ -60,5 +65,5 @@ The Wheelspot is a responsive e-commerce platform that allows users to view, sea
 Clone both the **frontend** and **backend** repositories to your local machine.
 
 ```bash
-git clone <https://github.com/muinuddin-sm12/L2-Assignment-4-frontend>
-git clone <https://github.com/muinuddin-sm12/L2-Assignment-4-backend>
+git clone <https://github.com/muinuddin-sm12/WheelSpot-client>
+git clone <https://github.com/muinuddin-sm12/WheelSpot-server>
