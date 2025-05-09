@@ -58,7 +58,7 @@ const AllCars = () => {
     refetch(); // Refetch data with the new query parameters
   };
 
-  console.log(searchTerm);
+  // console.log(searchTerm);
   return (
     <div className="px-6 md:px-12 lg:px-20">
       <div className="flex h-screen overflow-hidden flex-col lg:flex-row z-[999]">

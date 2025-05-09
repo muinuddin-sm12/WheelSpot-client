@@ -9,17 +9,9 @@ const FeatureProducts = () => {
   const { data, isLoading } = useGetAllCarsQuery(undefined);
 
   return (
-    <div className="flex flex-col items-center px-6 md:px-12 lg:px-20 min-h-[70vh]">
-      <div className="flex items-center justify-between mb-4 w-full mt-12">
-        <h1 className="text-xl font-medium">Our Latest Cars</h1>
-        <div>
-          <Link
-            className="uppercase flex items-center text-[#D32F2F] font-medium text-sm"
-            to={"/all-cars"}
-          >
-            view all cars <MdKeyboardArrowRight className="text-xl" />
-          </Link>
-        </div>
+    <div className="flex flex-col items-center px-6 md:px-12 lg:px-20 min-h-[70vh] py-16">
+      <div className="flex items-center justify-between mb-4 w-full ">
+        <h1 className="text-3xl font-medium mb-6">Our Latest Cars</h1>
       </div>
       {isLoading ? (
         <div className="w-full">
@@ -47,6 +39,15 @@ const FeatureProducts = () => {
                 image={""}
               />
             ))}
+
+          <div className=" lg:col-span-4 md:col-span-2  flex justify-center pt-4">
+            <Link
+              className="uppercase flex items-center px-3 py-1 rounded-lg border border-red-400 text-[#D32F2F] font-medium text-sm"
+              to={"/all-cars"}
+            >
+              view all cars <MdKeyboardArrowRight className="text-xl" />
+            </Link>
+          </div>
         </div>
       )}
     </div>

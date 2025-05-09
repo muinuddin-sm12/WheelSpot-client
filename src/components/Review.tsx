@@ -41,7 +41,7 @@ const Review = () => {
           {data?.data?.map((data: { carName: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; rating: number | undefined; review: string | any[]; image: string | undefined; customerName: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; date: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; }, index: Key | null | undefined) => (
             <CarouselItem
               key={index}
-              className="basis-full md:basis-1/2 lg:basis-1/3"
+              className="basis-full select-none md:basis-1/2 lg:basis-1/3"
             >
               <div className="pb-3">
                 <div className="border shadow-sm rounded-lg">
