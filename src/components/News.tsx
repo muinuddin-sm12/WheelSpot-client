@@ -18,16 +18,9 @@ const News = () => {
   const [newsData, setNewsData] = useState<TNews[] | []>([]);
   const fetchNews = async () => {
     try {
-      const res = await axios.get("https://newsapi.org/v2/everything", {
-        params: {
-          q: "automobile", // Try also "automobile", "EV", "electric car", etc.
-          from: "2025-05-01",
-          sortBy: "popularity",
-          language: "en",
-          pageSize: 4,
-          apiKey: import.meta.env.VITE_NEWS_API_KEY,
-        },
-      });
+      const res = await axios.get(
+        "https://wheel-spot-server.vercel.app/api/v1/news"
+      );
       setNewsData(res.data.articles);
     } catch (error) {
       console.log(error);
@@ -36,7 +29,7 @@ const News = () => {
   useEffect(() => {
     fetchNews();
   }, []);
-  console.log(newsData);
+  // console.log(newsData);
   return (
     <div className="px-6 md:px-12 lg:px-20 pb-16">
       <div className="flex items-center justify-between mb-4 w-full ">
@@ -44,7 +37,11 @@ const News = () => {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {newsData.map((news) => (
-          <Link target="_blank" to={news.url} className="relative h-[330px] w-full">
+          <Link
+            target="_blank"
+            to={news.url}
+            className="relative h-[330px] w-full"
+          >
             <img
               className="h-full w-full object-cover bg-center"
               src={news.urlToImage}
@@ -52,7 +49,9 @@ const News = () => {
             />
             <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-black/70 to-transparent" />
             <div className="absolute bottom-4 left-4 ">
-              <p className=" text-white leading-5 text-lg font-semibold mb-1">{news.title}</p>
+              <p className=" text-white leading-5 text-lg font-semibold mb-1">
+                {news.title}
+              </p>
               <span className="text-white text-sm">
                 Published at:{" "}
                 {new Date(news.publishedAt).toLocaleDateString("en-US", {
