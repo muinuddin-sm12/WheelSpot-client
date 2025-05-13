@@ -31,8 +31,8 @@ const Brands = () => {
       </div>
       <Marquee gradient gradientColor="#f9fafb" className="gap-6">
         <div className="flex items-center gap-6 overflow-x-auto ">
-          {brands.map((b) => (
-            <div className="h-32 w-32 rounded-lg border flex flex-shrink-0 items-center justify-center p-3 bg-gray-50">
+          {brands.map((b, index) => (
+            <div key={index} className="h-32 w-32 rounded-lg border flex flex-shrink-0 items-center justify-center p-3 bg-gray-50">
               <img src={b} alt="logo" />
             </div>
           ))}
