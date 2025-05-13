@@ -18,8 +18,8 @@ const Navbar = () => {
     navigate('/');
   }
   return (
-    <div className=" px-6 md:px-12 lg:px-20">
-      <div className="flex relative justify-between items-center border-b  py-2">
+    <div className="px-6 md:px-12 lg:px-20">
+      <div className="flex relative justify-between items-center py-2">
         <div className="z-[999]">
           <Link to={"/"} className="">
             <img
@@ -29,7 +29,7 @@ const Navbar = () => {
             />
           </Link>
         </div>
-        <div className="hidden md:flex items-center gap-6 text-sm">
+        <div className="hidden md:flex items-center gap-6">
           <Link to={"/"}>Home</Link>
           <Link to={"/all-cars"}>All Cars</Link>
           {userData &&

@@ -5,8 +5,8 @@ import { IoMdMail } from "react-icons/io";
 
 const Footer = () => {
   return (
-    <div className="pt-6 md:pt-16 border-t mt-12 ">
-      <div className="grid grid-cols-3 md:grid-cols-4 gap-6 mb-4 px-6 md:px-12 lg:px-20 pb-4 md:pb-12">
+    <div className="pt-6 md:pt-16 border-t bg-gray-900 mt-12 "> //bg-[#780002]
+      <div className="grid grid-cols-3 md:grid-cols-4 gap-6 px-6 md:px-12 lg:px-20 pb-4 md:pb-12">
         <div>
           <img className="h-14" src={logo} alt="" />
         </div>
@@ -37,9 +37,6 @@ const Footer = () => {
             </div>
           </div>
         </div>
-      </div>
-      <div className="h-12 w-full text-sm bg-black text-gray-500 flex items-center px-6 md:px-12 lg:px-20">
-        <p>Copyright &copy; WheelSpot 2025. All Rights Reserved.</p>
       </div>
     </div>
   );

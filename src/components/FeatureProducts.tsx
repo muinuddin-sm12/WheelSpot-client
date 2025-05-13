@@ -3,7 +3,7 @@ import ProductCard from "./ProductCard";
 import { TCar } from "@/types/global";
 import { Link } from "react-router-dom";
 import { MdKeyboardArrowRight } from "react-icons/md";
-import Skeleton from "./Skeleton";
+import FeatureSkeleton from "./skeleton/FeatureSkeleton";
 
 const FeatureProducts = () => {
   const { data, isLoading } = useGetAllCarsQuery(undefined);
@@ -15,7 +15,7 @@ const FeatureProducts = () => {
       </div>
       {isLoading ? (
         <div className="w-full">
-          <Skeleton />
+          <FeatureSkeleton />
         </div>
       ) : (
         <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-6 justify-center lg:grid-cols-4">

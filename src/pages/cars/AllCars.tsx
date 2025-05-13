@@ -8,7 +8,7 @@ import { IoSearchSharp } from "react-icons/io5";
 import { Button } from "@/components/ui/button";
 import { RxCrossCircled } from "react-icons/rx";
 
-import Skeleton from "@/components/Skeleton";
+import AllCarsSkeleton from "@/components/skeleton/AllCarsSkeleton";
 const AllCars = () => {
   const navigate = useNavigate();
   const { register, handleSubmit: handleSearchSubmit , setValue} = useForm();
@@ -148,7 +148,7 @@ const AllCars = () => {
             </div>
           ) : (
             <div className="w-full">
-              <Skeleton />
+              <AllCarsSkeleton />
             </div>
           )}
         </div>

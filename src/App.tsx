@@ -9,7 +9,7 @@ const App = () => {
     window.scrollTo(0, 0);
   }, [location.pathname])
   return (
-    <div className="mx-auto max-w-screen-xl">
+    <div className="mx-auto ">
         <MainLayout />
     </div>
   );
