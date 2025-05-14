@@ -68,7 +68,7 @@ const ManageProducts = () => {
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead className="w-[130px]">Product</TableHead>
+            <TableHead className="md:w-[130px]">Product</TableHead>
             <TableHead>Name</TableHead>
             <TableHead>Year</TableHead>
             <TableHead className="text-right">Amount</TableHead>

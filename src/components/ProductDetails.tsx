@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useGetSingleCarQuery } from "@/redux/features/cars/carApi";
-import { useParams } from "react-router-dom";
+import { redirect, useNavigate, useParams } from "react-router-dom";
 import { Button } from "./ui/button";
 import { selectCurrentUser } from "@/redux/features/auth/authSlice";
 import { useAppSelector } from "@/redux/hooks";
@@ -11,12 +11,17 @@ import { useOrderProductMutation } from "@/redux/features/order/orderApi";
 import Skeleton from "./Skeleton";
 
 const ProductDetails = () => {
+  const navigate = useNavigate()
   const { id } = useParams();
   const currentUserData = useAppSelector(selectCurrentUser);
+  if(!currentUserData){
+    redirect('/login')
+  }
+  console.log(currentUserData)
   const { data: userData } = useGetAllUsersQuery(undefined);
   const [orderProduct] = useOrderProductMutation(undefined);
   const currentUser = userData?.data?.find(
-    (item: any) => item.email === currentUserData!.email
+    (item: any) => item?.email === currentUserData?.email
   );
   const currentUserId = currentUser?._id;
 
@@ -41,6 +46,10 @@ const ProductDetails = () => {
   // console.log(success)
   const handleOrder = async () => {
     try {
+      if(!currentUserId){
+        navigate('/login');
+        return;
+      }
       const toastId = toast.loading("Order placing..", { duration: 2000 });
       const orderData = {
         user: currentUserId,

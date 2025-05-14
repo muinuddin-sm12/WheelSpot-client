@@ -90,7 +90,7 @@ const ManageOrders = () => {
               ) => (
                 <TableRow key={index}>
                   <TableCell>{singleData?.products[0]?.product}</TableCell>
-                  <TableCell>$ {singleData?.totalPrice}</TableCell>
+                  <TableCell className="flex items-center"><span className="font-medium pr-[2px]">$</span>{singleData?.totalPrice} </TableCell>
                   <TableCell>{singleData?.products[0]?.quantity}</TableCell>
                   <TableCell
                     className={`${

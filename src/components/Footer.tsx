@@ -2,10 +2,10 @@ import { Link } from "react-router-dom";
 import logo from "../assets/Logo.png";
 import { FaPhoneAlt } from "react-icons/fa";
 import { IoMdMail } from "react-icons/io";
-
+//bg-[#780002]
 const Footer = () => {
   return (
-    <div className="pt-6 md:pt-16 border-t bg-gray-100 mt-12 "> //bg-[#780002]
+    <div className="pt-6 md:pt-16 border-t bg-gray-100 mt-12 "> 
       <div className="grid grid-cols-3 md:grid-cols-4 gap-6 px-6 md:px-12 lg:px-20 pb-4 md:pb-12">
         <div>
           <img className="h-14" src={logo} alt="" />
@@ -24,7 +24,7 @@ const Footer = () => {
             <Link to={"/"} className="hover:text-[#D32F2F]">Disclaimer</Link>
           </div>
         </div>
-        <div>
+        <div className="col-span-3 md:col-span-1">
           <p className="font-medium text-gray-600 mb-1">Connect with us</p>
           <div className="text-sm">
             <div className="flex items-center gap-2">

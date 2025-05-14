@@ -9,8 +9,8 @@ const ProductCard = (data: TCar) => {
   const carTitle = brand.concat(model);
   return (
     <div className="flex flex-col shadow-sm rounded-lg overflow-hidden border lg:max-w-[400px]">
-      <div className=" overflow-hidden">
-        <img src={image} className="object-cover bg-center w-full h-[160px]" alt="" />
+      <div className=" overflow-hidden h-[180px]">
+        <img src={image} className="object-cover bg-center w-full h-full" alt="" />
       </div>
       <div className="px-3 pt-2">
         <div className="flex justify-between items-center pb-3">

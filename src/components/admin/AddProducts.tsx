@@ -10,15 +10,16 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { addProductsSchema } from "@/schemas/addProductsSchema";
 import { uploadPhoto } from "@/utils/uploadPhoto";
 import { Form } from "antd";
-import { useAddProductsMutation, useGetAllCarsQuery } from "@/redux/features/cars/carApi";
+import {
+  useAddProductsMutation,
+  useGetAllCarsQuery,
+} from "@/redux/features/cars/carApi";
 import { categoryOptions } from "@/constant/products";
 import { useNavigate } from "react-router-dom";
 
-
-
 const AddProducts = () => {
   const navigate = useNavigate();
-  const {refetch} = useGetAllCarsQuery(undefined);
+  const { refetch } = useGetAllCarsQuery(undefined);
   const [addProducts] = useAddProductsMutation(undefined);
   const onSubmit = async (data: FieldValues) => {
     const toastId = toast.loading("Adding product...", { duration: 2000 });
@@ -40,7 +41,7 @@ const AddProducts = () => {
         id: toastId,
         duration: 2000,
       });
-      navigate('/admin-dashboard/manage-products');
+      navigate("/admin-dashboard/manage-products");
       refetch();
     } catch (error) {
       toast.error("Something went wrong", { id: toastId, duration: 2000 });
@@ -51,16 +52,16 @@ const AddProducts = () => {
       <div className="w-full rounded-md flex flex-col items-center">
         <p className="text-xl font-medium mb-8">Add New Product</p>
         <WSForm onSubmit={onSubmit} resolver={zodResolver(addProductsSchema)}>
-          <div className="flex items-center gap-4">
+          <div className="flex flex-col md:flex-row items-center md:gap-4">
             <WSInput type={"text"} name={"brand"} label={"Brand:"} />
             <WSInput type={"text"} name={"model"} label={"Model:"} />
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex flex-col md:flex-row items-center md:gap-4">
             <WSInput type={"text"} name={"year"} label={"Year:"} />
             <WSInput type={"text"} name={"price"} label={"Price:"} />
           </div>
-          <div className="flex items-center gap-4">
-          <WSInput type={"text"} name={"stock"} label={"Quantity:"} />
+          <div className="flex flex-col md:flex-row md:items-center md:gap-4">
+            <WSInput type={"text"} name={"stock"} label={"Quantity:"} />
             <WSSelect
               options={categoryOptions}
               name={"category"}
@@ -77,7 +78,9 @@ const AddProducts = () => {
                   type="file"
                   accept="image/*"
                   value={(field as any)?.fileName}
-                  onChange={(e) => {field.onChange(e.target.files?.[0])}}
+                  onChange={(e) => {
+                    field.onChange(e.target.files?.[0]);
+                  }}
                 />
               </Form.Item>
             )}
@@ -87,7 +90,7 @@ const AddProducts = () => {
             name={"description"}
             label={"Description:"}
           />
-          <Button type="submit" className="button-primary w-[20%] ">
+          <Button type="submit" className="button-primary px-4 md:w-[20%] ">
             Submit
           </Button>
         </WSForm>
